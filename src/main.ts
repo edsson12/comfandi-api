@@ -8,7 +8,7 @@ import { config } from './config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://comfandi-front.vercel.app/'],
+    origin: ['http://localhost:5173', 'https://comfandi-front.vercel.app/'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,UPDATE,OPTIONS',
     credentials: true,
   });
