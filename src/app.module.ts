@@ -15,6 +15,7 @@ import { config } from './config';
       database: config.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      ssl: true,
       // logging: true,
     }),
   ],
