@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { FamilyNucleusService } from './family-nucleus.service';
 import { CreateFamilyNucleusDto } from './dto/create-family-nucleus.dto';
 import { UpdateFamilyNucleusDto } from './dto/update-family-nucleus.dto';
@@ -22,8 +30,11 @@ export class FamilyNucleusController {
     return this.familyNucleusService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFamilyNucleusDto: UpdateFamilyNucleusDto) {
+  @Put(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateFamilyNucleusDto: UpdateFamilyNucleusDto,
+  ) {
     return this.familyNucleusService.update(+id, updateFamilyNucleusDto);
   }
 

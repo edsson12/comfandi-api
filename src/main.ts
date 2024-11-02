@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { GlobalExceptionFilter } from './common/filters';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { config } from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +16,17 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-  await app.listen(process.env.PORT ?? 3000);
+
+  const docs = new DocumentBuilder()
+    .setTitle('Comfandi api')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .addTag('comfandi')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, docs);
+  SwaggerModule.setup('api', app, documentFactory);
+
+  await app.listen(config.PORT);
 }
+
 bootstrap();
